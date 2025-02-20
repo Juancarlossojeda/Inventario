@@ -217,7 +217,7 @@ with col1:
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <div style="font-size: 3rem; font-weight:bold; line-height:1;">
+            <div style="font-size: 8rem; font-weight:bold; line-height:1;">
                 {cantidad_disponible}
             </div>
             <div>Cantidad disponible</div>
@@ -231,7 +231,7 @@ with col2:
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <div style="font-size: 3rem; font-weight:bold; line-height:1;">
+            <div style="font-size: 8rem; font-weight:bold; line-height:1;">
                 {cantidad_vendida}
             </div>
             <div>Cantidad vendida</div>
