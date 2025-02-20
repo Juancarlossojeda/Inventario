@@ -249,6 +249,29 @@ ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] for item in data)
 ventas_publico_pre = sum(item["PRECIO PUBLICO"] for item in data)
 
 st.markdown(
+    """
+    <style>
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1rem;  /* Aumentar el tamaño de la fuente */
+        font-weight: bold;  /* Hacer el texto en negrita */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# Mostrar el inventario actual centrado y con un tamaño más grande
+st.markdown(
+    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pres:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
     f"""
     <div style="text-align:center;">
         <span style="display:inline-block; margin-right: 40px;">
