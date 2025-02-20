@@ -276,19 +276,6 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-st.markdown(
-    f"""
-    <div style="text-align:center;">
-        <span style="display:inline-block; margin-right: 40px;">
-            <strong>Inventario a Tecnicos:</strong> ${ventas_tecnico_pre:,.2f}
-        </span>
-        <span style="display:inline-block;">
-            <strong>Inventario a Publico:</strong> ${ventas_publico_pre:,.2f}
-        </span>
-    </div>
-    """,
-    unsafe_allow_html=True
-)
 
 # ------------------------------------------
 # Sección 2: Actualización de stock (MODIFICADA)
