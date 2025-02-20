@@ -245,8 +245,8 @@ price1 = selected_item["PRECIO DE COMPRA"]
 price2 = selected_item["PRECIO DE TECNICO"]
 price3 = selected_item["PRECIO PUBLICO"]   
 
-ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] for item in data)
-ventas_publico_pre = sum(item["PRECIO PUBLICO"] for item in data)
+ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] * item["UNIDADES"] for item in data)
+ventas_publico_pre = sum(item["PRECIO PUBLICO"] * item["UNIDADES"] for item in data)
 
 st.markdown(
     """
@@ -268,6 +268,11 @@ st.markdown(
 # Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
     f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_publico_pre:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
