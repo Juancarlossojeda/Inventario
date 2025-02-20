@@ -181,8 +181,7 @@ if search_term:
     }
     </style>
     """,
-    unsafe_allow_html=True
-)
+    unsafe_allow_html=True)
 
 # Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
