@@ -243,16 +243,24 @@ with col2:
 
 price1 = selected_item["PRECIO DE COMPRA"]
 price2 = selected_item["PRECIO DE TECNICO"]
-price3 = selected_item["PRECIO PUBLICO"]    
+price3 = selected_item["PRECIO PUBLICO"]   
 
-# Mostrar KPIs
-col1, col2, col3 = st.columns(3)
-with col1:
-    st.metric("Precio de compra", price1)
-with col2:
-    st.metric("Precio técnico", price2)
-with col3:
-    st.metric("Precio público", price3)
+ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] for item in data)
+ventas_publico_pre = sum(item["PRECIO PUBLICO"] for item in data)
+
+st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <span style="display:inline-block; margin-right: 25px;">
+            <strong>Inventario a Tecnicos:</strong> ${ventas_tecnico_pre:,.2f}
+        </span>
+        <span style="display:inline-block;">
+            <strong>Inventario a Publico:</strong> ${ventas_publico_pre:,.2f}
+        </span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 # ------------------------------------------
 # Sección 2: Actualización de stock (MODIFICADA)
@@ -314,7 +322,7 @@ if product_list:
                 
                 update_stock(row_index, new_stock)
                 st.success(f"Stock actualizado exitosamente! Nuevo stock: {new_stock}")
-                st.experimental_rerun()
+                #st.experimental_rerun()
             
             except Exception as e:
                 st.error(f"Error al actualizar: {str(e)}")
@@ -323,8 +331,4 @@ if product_list:
 else:
     st.warning("No hay productos en el inventario")
 
-# ------------------------------------------
-# Sección 3: Vista completa del inventario
-# ------------------------------------------
-st.header("📋 Inventario completo")
-st.dataframe(get_data())
+
