@@ -185,7 +185,7 @@ if search_term:
 
 # Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
-    f'<div class="centered"><h1>${desp:,.2f}</h1></div>',
+    f'<div class="centered"><h1>{desp}</h1></div>',
     unsafe_allow_html=True
 )
     
