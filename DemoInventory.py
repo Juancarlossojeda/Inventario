@@ -210,6 +210,19 @@ else:
 cantidad_disponible = selected_item["UNIDADES"]
 cantidad_vendida = sum(log["Cantidad"] for log in logs_data if log["Producto"] == selected_item["DESCRIPCION"])
 
+st.markdown(
+    """
+    <style>
+    /* Apuntamos a los elementos de st.metric */
+    [data-testid="stMetricDelta"] > div:first-child {
+        font-size: 3rem !important;  /* Ajusta el tamaño */
+        font-weight: bold !important;
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
 col1, col2 = st.columns(2)
 with col1:
     st.metric("Cantidad disponible", cantidad_disponible)
