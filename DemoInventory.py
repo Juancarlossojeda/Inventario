@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
     f"""
     <div style="text-align:center;">
-        <span style="display:inline-block; margin-right: 40px;">
+        <span style="display:inline-block; margin-right: 35px;">
             <strong>Ventas a público:</strong> ${ventas_publico:,.2f}
         </span>
         <span style="display:inline-block;">
