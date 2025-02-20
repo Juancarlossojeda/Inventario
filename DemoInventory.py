@@ -128,7 +128,7 @@ with col1:
     st.markdown(
         f"""
         <div style="text-align: center;">
-            <div style="font-size: 24px; font-weight: bold;">
+            <div style="font-size: 15px; font-weight: bold;">
                 ${ventas_publico:,.2f}
             </div>
             <div>Ventas a público</div>
@@ -141,7 +141,7 @@ with col2:
     st.markdown(
         f"""
         <div style="text-align: center;">
-            <div style="font-size: 24px; font-weight: bold;">
+            <div style="font-size: 15px; font-weight: bold;">
                 ${ventas_tecnico:,.2f}
             </div>
             <div>Ventas a técnicos</div>
