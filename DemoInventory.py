@@ -191,41 +191,41 @@ st.markdown(
     
     
     
-    # Mostrar imagen del producto
-    image_url = selected_item.get("URL", "")
-    if image_url:
-        try:
-            response = requests.get(image_url)
-            img = Image.open(BytesIO(response.content))
-            st.image(img, caption=selected_item["DESCRIPCION"], width=500)
-        except Exception as e:
-            st.error(f"No se pudo cargar la imagen: {str(e)}")
-    else:
-        st.warning("No hay imagen disponible para este producto.")
-    
-    # Mostrar cantidad disponible y vendida
-    cantidad_disponible = selected_item["UNIDADES"]
-    cantidad_vendida = sum(log["Cantidad"] for log in logs_data if log["Producto"] == selected_item["DESCRIPCION"])
-    
-    col1, col2 = st.columns(2)
-    with col1:
-        st.metric("Cantidad disponible", cantidad_disponible)
-    with col2:
-        st.metric("Cantidad vendida", cantidad_vendida)
+# Mostrar imagen del producto
+image_url = selected_item.get("URL", "")
+if image_url:
+    try:
+        response = requests.get(image_url)
+        img = Image.open(BytesIO(response.content))
+        st.image(img, caption=selected_item["DESCRIPCION"], width=500)
+    except Exception as e:
+        st.error(f"No se pudo cargar la imagen: {str(e)}")
+else:
+    st.warning("No hay imagen disponible para este producto.")
+
+# Mostrar cantidad disponible y vendida
+cantidad_disponible = selected_item["UNIDADES"]
+cantidad_vendida = sum(log["Cantidad"] for log in logs_data if log["Producto"] == selected_item["DESCRIPCION"])
+
+col1, col2 = st.columns(2)
+with col1:
+    st.metric("Cantidad disponible", cantidad_disponible)
+with col2:
+    st.metric("Cantidad vendida", cantidad_vendida)
 
 
-    price1 = selected_item["PRECIO DE COMPRA"]
-    price2 = selected_item["PRECIO DE TECNICO"]
-    price3 = selected_item["PRECIO PUBLICO"]    
-    
-    # Mostrar KPIs
-    col1, col2, col3 = st.columns(3)
-    with col1:
-        st.metric("Precio de compra", price1)
-    with col2:
-        st.metric("Precio técnico", price2)
-    with col3:
-        st.metric("Precio público", price3)
+price1 = selected_item["PRECIO DE COMPRA"]
+price2 = selected_item["PRECIO DE TECNICO"]
+price3 = selected_item["PRECIO PUBLICO"]    
+
+# Mostrar KPIs
+col1, col2, col3 = st.columns(3)
+with col1:
+    st.metric("Precio de compra", price1)
+with col2:
+    st.metric("Precio técnico", price2)
+with col3:
+    st.metric("Precio público", price3)
 
 # ------------------------------------------
 # Sección 2: Actualización de stock (MODIFICADA)
