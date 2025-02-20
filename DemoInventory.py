@@ -267,7 +267,7 @@ st.markdown(
 
 # Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
-    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pres:,.2f}</h1></div>',
+    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
