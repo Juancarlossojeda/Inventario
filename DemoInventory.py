@@ -122,33 +122,19 @@ st.markdown(
     unsafe_allow_html=True
 )
 
-col1, col2 = st.columns(2)
-
-with col1:
-    st.markdown(
-        f"""
-        <div style="text-align: center;">
-            <div style="font-size: 15px; font-weight: bold;">
-                ${ventas_publico:,.2f}
-            </div>
-            <div>Ventas a público</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
-
-with col2:
-    st.markdown(
-        f"""
-        <div style="text-align: center;">
-            <div style="font-size: 15px; font-weight: bold;">
-                ${ventas_tecnico:,.2f}
-            </div>
-            <div>Ventas a técnicos</div>
-        </div>
-        """,
-        unsafe_allow_html=True
-    )
+st.markdown(
+    f"""
+    <div style="text-align:center;">
+        <span style="display:inline-block; margin-right: 20px;">
+            <strong>Ventas a público:</strong> ${ventas_publico:,.2f}
+        </span>
+        <span style="display:inline-block;">
+            <strong>Ventas a técnicos:</strong> ${ventas_tecnico:,.2f}
+        </span>
+    </div>
+    """,
+    unsafe_allow_html=True
+)
 
 st.markdown(
     """
