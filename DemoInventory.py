@@ -126,10 +126,10 @@ st.markdown(
     f"""
     <div style="text-align:center;">
         <span style="display:inline-block; margin-right: 45px;">
-            <strong>Vet T:</strong> ${ventas_tecnico:,.2f}
+            <strong>Ven T:</strong> ${ventas_tecnico:,.2f}
         </span>
         <span style="display:inline-block;">
-            <strong>Vet P:</strong> ${ventas_publico:,.2f}
+            <strong>Ven P:</strong> ${ventas_publico:,.2f}
         </span>
     </div>
     """,
