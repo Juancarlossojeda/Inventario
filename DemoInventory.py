@@ -251,7 +251,7 @@ ventas_publico_pre = sum(item["PRECIO PUBLICO"] for item in data)
 st.markdown(
     f"""
     <div style="text-align:center;">
-        <span style="display:inline-block; margin-right: 25px;">
+        <span style="display:inline-block; margin-right: 40px;">
             <strong>Inventario a Tecnicos:</strong> ${ventas_tecnico_pre:,.2f}
         </span>
         <span style="display:inline-block;">
