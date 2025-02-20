@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
     f"""
     <div style="text-align:center;">
-        <span style="display:inline-block; margin-right: 25px;">
+        <span style="display:inline-block; margin-right: 40px;">
             <strong>Ventas a público:</strong> ${ventas_publico:,.2f}
         </span>
         <span style="display:inline-block;">
@@ -272,7 +272,7 @@ st.markdown(
 )
 
 st.markdown(
-    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_publico_pre:,.2f}</h1></div>',
+    f'<div class="centered"><h1>Inventario a Publico: ${ventas_publico_pre:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
