@@ -73,6 +73,19 @@ def log_transaction(product, operation, quantity, old_stock, new_stock, price):
     except Exception as e:
         st.error(f"Error al registrar transacción: {str(e)}")
 
+# Obtener datos de la hoja principal y logs
+data = get_data()
+logs_worksheet = spreadsheet.worksheet("Logs")
+logs_data = logs_worksheet.get_all_records()
+
+# Calcular valor de inventario actual
+inventario_actual = sum(item["PRECIO DE COMPRA"] * item["UNIDADES"] for item in data)
+
+# Calcular KPIs de ventas
+ventas_tecnico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta técnico")
+ventas_publico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta público")
+ventas_totales = ventas_tecnico + ventas_publico
+
 # Centrar el inventario actual con CSS personalizado y aumentar el tamaño de la fuente
 st.markdown(
     """
