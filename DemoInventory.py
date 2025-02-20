@@ -197,7 +197,10 @@ if image_url:
     try:
         response = requests.get(image_url)
         img = Image.open(BytesIO(response.content))
-        st.image(img, caption=selected_item["DESCRIPCION"], width=500)
+        col_left, col_center, col_right = st.columns([1, 2, 1])
+            with col_center:
+                st.image(img, caption=selected_item["DESCRIPCION"], width=500)
+        #st.image(img, caption=selected_item["DESCRIPCION"], width=500)
     except Exception as e:
         st.error(f"No se pudo cargar la imagen: {str(e)}")
 else:
