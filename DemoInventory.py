@@ -73,32 +73,7 @@ def log_transaction(product, operation, quantity, old_stock, new_stock, price):
     except Exception as e:
         st.error(f"Error al registrar transacción: {str(e)}")
 
-# Interfaz de Streamlit
-st.title("Gestión de Inventario 📦")
-
-# Botón de refrescar
-if st.button("🔄 Refrescar datos"):
-    st.experimental_rerun()
-
-# ------------------------------------------
-# Sección 1: Verificar stock (MODIFICADA)
-# ------------------------------------------
-st.header("🔍 Verificar stock")
-
-# Obtener datos de la hoja principal y logs
-data = get_data()
-logs_worksheet = spreadsheet.worksheet("Logs")
-logs_data = logs_worksheet.get_all_records()
-
-# Calcular valor de inventario actual
-inventario_actual = sum(item["PRECIO DE COMPRA"] * item["UNIDADES"] for item in data)
-
-# Calcular KPIs de ventas
-ventas_tecnico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta técnico")
-ventas_publico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta público")
-ventas_totales = ventas_tecnico + ventas_publico
-
-# Centrar el inventario actual con CSS personalizado
+# Centrar el inventario actual con CSS personalizado y aumentar el tamaño de la fuente
 st.markdown(
     """
     <style>
@@ -107,26 +82,83 @@ st.markdown(
         justify-content: center;
         align-items: center;
         text-align: center;
+        font-size: 2.5rem;  /* Aumentar el tamaño de la fuente */
+        font-weight: bold;  /* Hacer el texto en negrita */
     }
     </style>
     """,
     unsafe_allow_html=True
 )
 
-# Mostrar el inventario actual centrado
+# Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
-    f'<div class="centered"><h3>Valor de inventario actual: ${inventario_actual:,.2f}</h3></div>',
+    f'<div class="centered"><h1>Valor de inventario actual: ${inventario_actual:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
-# Mostrar KPIs
-col1, col2, col3 = st.columns(3)
+# Mostrar KPIs con tamaño de números personalizado
+st.markdown(
+    """
+    <style>
+    .kpi-number {
+        font-size: 1rem;  /* Aumentar el tamaño de los números */
+        font-weight: bold;  /* Hacer los números en negrita */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+col1, col2 = st.columns(2)
+
 with col1:
-    st.metric("Ventas totales", f"${ventas_totales:,.2f}")
+    st.markdown(
+        f"""
+        <div style="text-align: center;">
+            <div style="font-size: 24px; font-weight: bold;">
+                ${ventas_publico:,.2f}
+            </div>
+            <div>Ventas a público</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
 with col2:
-    st.metric("Ventas a técnicos", f"${ventas_tecnico:,.2f}")
-with col3:
-    st.metric("Ventas a público", f"${ventas_publico:,.2f}")
+    st.markdown(
+        f"""
+        <div style="text-align: center;">
+            <div style="font-size: 24px; font-weight: bold;">
+                ${ventas_tecnico:,.2f}
+            </div>
+            <div>Ventas a técnicos</div>
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+st.markdown(
+    """
+    <style>
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1rem;  /* Aumentar el tamaño de la fuente */
+        font-weight: bold;  /* Hacer el texto en negrita */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# Mostrar el inventario actual centrado y con un tamaño más grande
+st.markdown(
+    f'<div class="centered"><h1>Ventas Totales: ${ventas_totales:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
 
 
 
