@@ -125,7 +125,7 @@ st.markdown(
 st.markdown(
     f"""
     <div style="text-align:center;">
-        <span style="display:inline-block; margin-right: 20px;">
+        <span style="display:inline-block; margin-right: 25px;">
             <strong>Ventas a público:</strong> ${ventas_publico:,.2f}
         </span>
         <span style="display:inline-block;">
@@ -167,9 +167,30 @@ search_term = st.selectbox("Seleccionar producto:", product_list, key="selectbox
 
 if search_term:
     selected_item = next(item for item in data if item["DESCRIPCION"] == search_term)
+    desp = selected_item["DESCRIPCION"]
+    st.markdown(
+    """
+    <style>
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 2rem;  /* Aumentar el tamaño de la fuente */
+        font-weight: bold;  /* Hacer el texto en negrita */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+# Mostrar el inventario actual centrado y con un tamaño más grande
+st.markdown(
+    f'<div class="centered"><h1>${desp:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
     
-    # Mostrar descripción del producto
-    st.subheader(selected_item["DESCRIPCION"])
+    
     
     # Mostrar imagen del producto
     image_url = selected_item.get("URL", "")
