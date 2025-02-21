@@ -108,6 +108,37 @@ st.markdown(
     f'<div class="centered"><h1>Valor de inventario actual: ${inventario_actual:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
+ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] * item["UNIDADES"] for item in data)
+ventas_publico_pre = sum(item["PRECIO PUBLICO"] * item["UNIDADES"] for item in data)
+
+st.markdown(
+    """
+    <style>
+    .centered {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+        font-size: 1rem;  /* Aumentar el tamaño de la fuente */
+        font-weight: bold;  /* Hacer el texto en negrita */
+    }
+    </style>
+    """,
+    unsafe_allow_html=True
+)
+
+
+# Mostrar el inventario actual centrado y con un tamaño más grande
+st.markdown(
+    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
+
+st.markdown(
+    f'<div class="centered"><h1>Inventario a Publico: ${ventas_publico_pre:,.2f}</h1></div>',
+    unsafe_allow_html=True
+)
+
 
 # Mostrar KPIs con tamaño de números personalizado
 st.markdown(
@@ -213,11 +244,11 @@ cantidad_vendida = sum(log["Cantidad"] for log in logs_data if log["Producto"] =
 col1, col2 = st.columns(2)
 
 with col1:
-    # Cantidad disponible
+    # Cantidad disponible en verde
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <div style="font-size: 12rem; font-weight:bold; line-height:1;">
+            <div style="font-size: 12rem; font-weight:bold; line-height:1; color: #00FF00;">
                 {cantidad_disponible}
             </div>
             <div>Cantidad disponible</div>
@@ -227,11 +258,11 @@ with col1:
     )
 
 with col2:
-    # Cantidad vendida
+    # Cantidad vendida en rojo
     st.markdown(
         f"""
         <div style="text-align:center;">
-            <div style="font-size: 12rem; font-weight:bold; line-height:1;">
+            <div style="font-size: 12rem; font-weight:bold; line-height:1; color: #FF0000;">
                 {cantidad_vendida}
             </div>
             <div>Cantidad vendida</div>
@@ -245,36 +276,7 @@ price1 = selected_item["PRECIO DE COMPRA"]
 price2 = selected_item["PRECIO DE TECNICO"]
 price3 = selected_item["PRECIO PUBLICO"]   
 
-ventas_tecnico_pre = sum(item["PRECIO DE TECNICO"] * item["UNIDADES"] for item in data)
-ventas_publico_pre = sum(item["PRECIO PUBLICO"] * item["UNIDADES"] for item in data)
 
-st.markdown(
-    """
-    <style>
-    .centered {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        text-align: center;
-        font-size: 1rem;  /* Aumentar el tamaño de la fuente */
-        font-weight: bold;  /* Hacer el texto en negrita */
-    }
-    </style>
-    """,
-    unsafe_allow_html=True
-)
-
-
-# Mostrar el inventario actual centrado y con un tamaño más grande
-st.markdown(
-    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
-    unsafe_allow_html=True
-)
-
-st.markdown(
-    f'<div class="centered"><h1>Inventario a Publico: ${ventas_publico_pre:,.2f}</h1></div>',
-    unsafe_allow_html=True
-)
 
 
 # ------------------------------------------
