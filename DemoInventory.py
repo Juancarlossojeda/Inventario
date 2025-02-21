@@ -85,7 +85,7 @@ inventario_actual = sum(item["PRECIO DE COMPRA"] * item["UNIDADES"] for item in 
 ventas_tecnico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta técnico")
 ventas_publico = sum(log["Precio"] for log in logs_data if log["Operacion"] == "Venta público")
 ventas_totales = ventas_tecnico + ventas_publico
-
+st.set_page_config(layout="wide")
 # Centrar el inventario actual con CSS personalizado y aumentar el tamaño de la fuente
 st.markdown(
     """
@@ -130,12 +130,12 @@ st.markdown(
 
 # Mostrar el inventario actual centrado y con un tamaño más grande
 st.markdown(
-    f'<div class="centered"><h1>Inventario a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
+    f'<div class="centered"><h1>Estimado de venta a Tecnicos: ${ventas_tecnico_pre:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
 st.markdown(
-    f'<div class="centered"><h1>Inventario a Publico: ${ventas_publico_pre:,.2f}</h1></div>',
+    f'<div class="centered"><h1>Estimado de venta a Publico: ${ventas_publico_pre:,.2f}</h1></div>',
     unsafe_allow_html=True
 )
 
