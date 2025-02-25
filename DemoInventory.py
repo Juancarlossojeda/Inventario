@@ -227,11 +227,21 @@ image_url = selected_item.get("URL", "")
 if image_url:
     try:
         response = requests.get(image_url)
-        img = Image.open(BytesIO(response.content))
-        col_left, col_center, col_right = st.columns([1, 2, 1])
-        with col_center:
-            st.image(img, caption=selected_item["DESCRIPCION"], width=500)
-        #st.image(img, caption=selected_item["DESCRIPCION"], width=500)
+        if response.status_code == 200:
+            # Verificar el tipo de contenido (Content-Type)
+            content_type = response.headers.get('Content-Type', '')
+            if 'image' in content_type:
+                # Abrir la imagen usando PIL
+                img = Image.open(BytesIO(response.content))
+                
+                # Mostrar la imagen en Streamlit
+                col_left, col_center, col_right = st.columns([1, 2, 1])
+                with col_center:
+                    st.image(img, caption="Imagen de ejemplo", width=500)
+            else:
+                st.error(f"La URL no apunta a una imagen. Tipo de contenido: {content_type}")
+        else:
+            st.error(f"No se pudo obtener la imagen. Código de estado: {response.status_code}")
     except Exception as e:
         st.error(f"No se pudo cargar la imagen: {str(e)}")
 else:
