@@ -226,6 +226,7 @@ st.markdown(
 image_url = selected_item.get("URL", "")
 if image_url:
     try:
+        # Agregar un User-Agent a la solicitud
         headers = {
             "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36"
         }
@@ -249,8 +250,10 @@ if image_url:
                 st.error(f"La URL no apunta a una imagen. Tipo de contenido: {content_type}")
         else:
             st.error(f"No se pudo obtener la imagen. Código de estado: {response.status_code}")
+    except Exception as e:
+        st.error(f"No se pudo cargar la imagen: {str(e)}")
 else:
-    st.warning("No hay imagen disponible para este producto.")
+    st.warning("No hay URL de imagen disponible.")
 
 # Mostrar cantidad disponible y vendida
 cantidad_disponible = selected_item["UNIDADES"]
