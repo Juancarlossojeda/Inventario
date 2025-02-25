@@ -245,7 +245,7 @@ if image_url:
                 # Mostrar la imagen en Streamlit
                 col_left, col_center, col_right = st.columns([1, 2, 1])
                 with col_center:
-                    st.image(img, caption="Imagen de ejemplo", width=500)
+                    st.image(img, caption="Imagen", width=500)
             else:
                 st.error(f"La URL no apunta a una imagen. Tipo de contenido: {content_type}")
         else:
